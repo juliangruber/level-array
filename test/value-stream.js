@@ -16,7 +16,7 @@ test('value stream', function(t) {
       t.error(err);
 
       var peeps = [];
-      people.createKeyStream()
+      people.createValueStream()
       .on('data', function(person) {
         peeps.push(person);
       })
