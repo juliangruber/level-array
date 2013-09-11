@@ -3,6 +3,8 @@
 
 The array datatype inside leveldb.
 
+[![build status](https://secure.travis-ci.org/juliangruber/level-array.png)](http://travis-ci.org/juliangruber/level-array)
+
 ## Example
 
 ```js
