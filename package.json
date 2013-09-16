@@ -14,7 +14,7 @@
   "dependencies": {
     "level-peek": "~1.0.6",
     "between": "~0.1.3",
-    "count-stream": "0.0.1",
+    "count-stream": "0.0.2",
     "once": "~1.2.0",
     "join-stream": "0.0.0",
     "concat-stream": "~1.0.1",
