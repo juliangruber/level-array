@@ -5,7 +5,7 @@ var array = require('..');
 
 test('indexOf', function (t) {
 
-  t.plan(6);
+  t.plan(8);
 
   var db = level();
   var cities = array(db);
@@ -19,12 +19,15 @@ test('indexOf', function (t) {
       cities.indexOf('new york', function (err, index) {
         t.error(err);
         t.notEqual(null, index);
-        console.log(index);
 
         cities.indexOf('la', function (err, index) {
           t.error(err);
           t.notEqual(null, index);
-          console.log(index)
+
+          cities.indexOf('sfo', function (err, index) {
+            t.error(err);
+            t.equal(null, index);
+          });
         });
       });
 
