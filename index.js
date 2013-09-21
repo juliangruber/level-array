@@ -157,18 +157,19 @@ array.prototype.splice = function(index, remove/*, items.., fn*/) {
 
 
 
-array.prototype.indexOf = function (key, fn) {
+array.prototype.indexOf = function (element, fn) {
   var self = this;
   var stream = self.db.createReadStream()
-  var array = [];
 
   stream.on('data', function (d) {
-    array.push(d.value);
+    if (element === d.value) {
+      fn(null, d.key);
+      stream.destroy();
+    }
   });
 
   stream.on('end', function (d) {
-    fn(null, array.indexOf(key));
-    array = null;
+    fn(null, null);
   });
 
   stream.on('error', function (err) {
