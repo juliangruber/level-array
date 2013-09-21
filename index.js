@@ -155,3 +155,24 @@ array.prototype.splice = function(index, remove/*, items.., fn*/) {
   };
 };
 
+
+
+array.prototype.indexOf = function (element, fn) {
+  var self = this;
+  var stream = self.db.createReadStream()
+
+  stream.on('data', function (d) {
+    if (element === d.value) {
+      fn(null, d.key);
+      stream.destroy();
+    }
+  });
+
+  stream.on('end', function (d) {
+    fn(null, null);
+  });
+
+  stream.on('error', function (err) {
+    fn(err);
+  });
+};
