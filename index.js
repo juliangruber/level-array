@@ -155,24 +155,19 @@ array.prototype.splice = function(index, remove/*, items.., fn*/) {
   };
 };
 
-
-
 array.prototype.indexOf = function (element, fn) {
-  var self = this;
-  var stream = self.db.createReadStream()
+  var stream = this.db.createReadStream();
+  fn = once(fn);
 
-  stream.on('data', function (d) {
-    if (element === d.value) {
-      fn(null, d.key);
+  stream.on('data', function (obj) {
+    if (element === obj.value) {
+      fn(null, obj.key);
       stream.destroy();
     }
-  });
-
-  stream.on('end', function (d) {
-    fn(null, null);
-  });
-
-  stream.on('error', function (err) {
-    fn(err);
-  });
+  })
+  .on('end', function() {
+    fn(null, -1);
+  })
+  .on('error', fn);
 };
+
