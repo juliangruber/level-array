@@ -38,6 +38,9 @@ people.join(seperator, fn);
 
 // add/remove elements
 people.splice(1, 1, 'foo', fn);
+
+// indexOf
+people.indexOf('werle', fn);
 ```
 
 ## Installation
